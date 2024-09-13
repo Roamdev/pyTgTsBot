@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import telebot
 
+from modules import get_rates
 
 load_dotenv()
 
@@ -19,8 +20,7 @@ def repeat_all_message(message):
 if __name__ == '__main__':
     bot.infinity_polling()
 
-
-class RateFetcher:
-    def fetch_rate(self, buy_rate, sell_rate, location, amount):
-        requested_rate = 99.99
-        return requested_rate
+get_rates('usd', 'usdt', 'MSK', 1239)
+get_rates('usd', 'usdt', 'LA', 3123)
+get_rates('usd', 'usdt', 'TLT', 25)
+get_rates('usd', 'usdt', 'NY', 123123)
