@@ -47,16 +47,6 @@ def get_direction_data(direction_id):
     return direction_data
 
 
-def get_currency(direction_id):
-    # send api request get_direction with params
-    method_name = 'get_direction'
-    endpoint = base_url + method_name
-    response = requests.post(endpoint, data={'direction_id': str(direction_id)}, headers=query_headers)
-    direction_data = response.json().get('data')
-
-    return direction_data
-
-
 def get_calc(direction_id, amount, action, city):
     # send api request get_calc with params
     method_name = 'get_calc'
