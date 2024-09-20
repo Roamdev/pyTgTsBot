@@ -96,12 +96,12 @@ def get_all_exchange_rate(give_id, get_id, city, action):
         'USD': [100, 500, 1500, 5000, 10000],
         'RUB': [10000, 50000, 150000, 500000, 1000000]
     }
-    if give_id == 535:
+    if give_id == 535 or give_id == '535':
         amount = amount.get('RUB')
     else:
         amount = amount.get('USD')
 
+    massive_rate = []
     for summ in amount:
-        get_exchange_rate_for_currency_pair(give_id, get_id, city, summ, action)
-
-
+        massive_rate += [get_exchange_rate_for_currency_pair(give_id, get_id, city, summ, action)]
+    return massive_rate
