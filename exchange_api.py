@@ -2,6 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 api_login = os.getenv('API_LOGIN')
@@ -70,6 +71,15 @@ def get_calc(direction_id, amount, action, city):
     exchange_rate = request_data.get(key)
 
     return exchange_rate
+
+
+def get_chosen_city_name(city):
+    # select city name from api
+    method_name = 'get_direction'
+    endpoint = base_url + method_name
+    response = requests.post(endpoint, data={'direction_id': '1331'}, headers=query_headers)
+    city_name = response.json().get("data", {}).get("dir_fields", {}).get("city", {}).get("options", {}).get(city, "0")
+    return city_name
 
 
 def get_exchange_rate_for_currency_pair(give_id, get_id, city, amount, action):
