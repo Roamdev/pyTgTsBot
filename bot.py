@@ -14,11 +14,11 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
+    print(f'{message.chat.id} : {message.text}')
     bot.send_message(message.chat.id, '/rate_LOSANGELES\n\n'
                                       '/rate_MIAMI\n\n'
                                       '/rate_NEWYORK\n\n'
                                       '/rate_CHICAGO')
-    print(message.chat.id)
 
 
 @bot.message_handler(commands=[
@@ -30,7 +30,6 @@ def send_welcome(message):
 def send_rate(message):
     bot.send_message(message.chat.id, 'Обработка запроса 🌚')
     city = message.text[6:]
-    print(city)
     rub_to_cash = exchange_rate('535', '568', city, 1)
     rub_to_zelle = exchange_rate('535', '578', city, 1)
     cash_usd_to_rub = exchange_rate('568', '535', city, 1)

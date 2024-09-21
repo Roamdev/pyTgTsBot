@@ -1,8 +1,5 @@
 from datetime import date
-# import locale
-#
-#
-# locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+
 
 month_translate = {
     'Jan': 'Января',
@@ -36,12 +33,3 @@ footer_text = (f'Отдаете USDT ➡️ Получаете USD\n 10% от 10
                f'Brooklyn\nMiami - Sunny Isles\nOrange - County\nChicago - Des Plaines\n\n 💬Написать по обмену:\n '
                f'Los Angeles - OBMENCA\n\n☎️ Позвонить\n 888 702 4827\n\nTelegram\nОбменка Los Angeles\nВы можете '
                f'оставить ваш отзыв в комментариях этого поста')
-
-
-
-
-
-
-
-
-
