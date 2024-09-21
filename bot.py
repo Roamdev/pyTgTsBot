@@ -14,7 +14,6 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
-    print(f'{message.chat.id} : {message.text}')
     bot.send_message(message.chat.id, '/rate_LOSANGELES\n\n'
                                       '/rate_MIAMI\n\n'
                                       '/rate_NEWYORK\n\n'
