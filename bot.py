@@ -29,10 +29,10 @@ def send_welcome(message):
 def send_rate(message):
     bot.send_message(message.chat.id, 'Обработка запроса 🌚')
     city = message.text[6:]
-    rub_to_cash = exchange_rate('535', '568', city, 1)
-    rub_to_zelle = exchange_rate('535', '578', city, 1)
-    cash_usd_to_rub = exchange_rate('568', '535', city, 1)
-    zelle_to_rub = exchange_rate('578', '535', city, 1)
+    rub_to_cash = exchange_rate('WIRERUB', 'CASHUSD', city, 1)
+    rub_to_zelle = exchange_rate('WIRERUB', 'ZELLE', city, 1)
+    cash_usd_to_rub = exchange_rate('CASHUSD', 'WIRERUB', city, 1)
+    zelle_to_rub = exchange_rate('ZELLE', 'WIRERUB', city, 1)
     
     bot.send_message(message.chat.id, f'{header_message}\n\n'
                                       f'Курс для города {chosen_city_name(city)}:\n\n'

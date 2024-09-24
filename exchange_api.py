@@ -10,25 +10,28 @@ api_key = os.getenv('API_KEY')
 base_url = os.getenv('BASE_URL')
 query_headers = {'API-LOGIN': api_login, 'API-KEY': api_key}
 
-currency_name_to_id_mapping = {
-    "568": "CASHUSD",
-    "355": "ETH",
-    "537": "WIREUAH",
-    "578": "ZELLE",
-    "539": "WIREKZT",
-    "369": "USDTBEP20",
-    "367": "USDTERC20",
-    "385": "TRX",
-    "535": "WIRERUB",
-    "581": "LYUBOYBANK",
-    "371": "USDCERC20",
-    "368": "USDTTRC20",
-    "348": "BTC"
+currency_id_to_name_mapping = {
+    "CASHUSD": "568",
+    "ETH": "355",
+    "WIREUAH": "537",
+    "ZELLE": "578",
+    "WIREKZT": "539",
+    "USDTBEP20": "369",
+    "USDTERC20": "367",
+    "TRX": "385",
+    "WIRERUB": "535",
+    "LYUBOYBANK": "581",
+    "USDCERC20": "371",
+    "USDTTRC20": "368",
+    "BTC": "348"
 }
 
 
 def get_direction(give_id, get_id):
     # send api request get_directions with params
+
+    give_id = str(currency_id_to_name_mapping.get(give_id, f'{give_id}'))
+    get_id = str(currency_id_to_name_mapping.get(get_id, f'{get_id}'))
     method_name = 'get_directions'
     endpoint = base_url + method_name
     response = requests.post(endpoint, headers=query_headers)
@@ -84,7 +87,10 @@ def get_chosen_city_name(city):
 
 def get_exchange_rate_for_currency_pair(give_id, get_id, city, amount, action):
     # get exchange rate
-    give_id, get_id = str(give_id), str(get_id)
+
+    give_id = str(currency_id_to_name_mapping.get(give_id, f'{give_id}'))
+    get_id = str(currency_id_to_name_mapping.get(get_id, f'{get_id}'))
+
     direction_id = get_direction(give_id=str(give_id), get_id=str(get_id))
 
     if not direction_id:
@@ -102,16 +108,19 @@ def get_exchange_rate_for_currency_pair(give_id, get_id, city, amount, action):
 
 def get_all_exchange_rate(give_id, get_id, city, action):
     # get all available procedures depending on the amount
-    amount = {
+
+    give_id = str(currency_id_to_name_mapping.get(give_id, f'{give_id}'))
+    get_id = str(currency_id_to_name_mapping.get(get_id, f'{get_id}'))
+    amounts_list = {
         'USD': [100, 500, 1500, 5000, 10000],
         'RUB': [10000, 50000, 150000, 500000, 1000000]
     }
-    if give_id == 535 or give_id == '535':
-        amount = amount.get('RUB')
-    else:
-        amount = amount.get('USD')
 
-    massive_rate = []
-    for summ in amount:
-        massive_rate += [get_exchange_rate_for_currency_pair(give_id, get_id, city, summ, action)]
-    return massive_rate
+    amounts = amounts_list.get('USD')
+    if str(give_id) == '535':
+        amounts = amounts_list.get('RUB')
+
+    rate_arr = []
+    for summ in amounts:
+        rate_arr += [get_exchange_rate_for_currency_pair(give_id, get_id, city, summ, action)]
+    return rate_arr
