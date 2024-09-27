@@ -16,15 +16,12 @@ commands = [
     "rate_NEWYORK",
     "rate_CHICAGO"
 ]
+commands_text = '\n\n'.join([f'/{command}' for command in commands])
 
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, f'\n/{commands[0]}\n'
-                                      f'\n/{commands[1]}\n'
-                                      f'\n/{commands[2]}\n'
-                                      f'\n/{commands[3]}\n'
-                     )
+    bot.send_message(message.chat.id, commands_text)
 
 
 @bot.message_handler(commands=commands)
