@@ -11,7 +11,7 @@ base_url = os.getenv('BASE_URL')
 query_headers = {'API-LOGIN': api_login, 'API-KEY': api_key}
 
 
-def get_direction(currency_out, currency_in):
+def get_direction(currency_in, currency_out):
     # send api request get_directions with params
 
     method_name = 'get_directions'
@@ -20,8 +20,8 @@ def get_direction(currency_out, currency_in):
     directions = response.json().get('data')
     for direction in directions:
         
-        if (direction.get('currency_give_id') == currency_out
-                and direction.get('currency_get_id') == currency_in):
+        if (direction.get('currency_get_id') == currency_in
+                and direction.get('currency_give_id') == currency_out):
             return direction.get('direction_id')
 
 
@@ -68,10 +68,10 @@ def get_chosen_city_name(city):
     return city
 
 
-def get_exchange_rate_for_currency_pair(currency_out, currency_in, city, amount, action=1):
+def get_exchange_rate_for_currency_pair(currency_in, currency_out, city, amount, action=1):
     # get exchange rate
 
-    direction_id = get_direction(currency_out=currency_out, currency_in=currency_in)
+    direction_id = get_direction(currency_in=currency_in, currency_out=currency_out)
 
     if not direction_id:
         return None
@@ -81,7 +81,7 @@ def get_exchange_rate_for_currency_pair(currency_out, currency_in, city, amount,
     return exchange_rate
 
 
-def get_all_exchange_rate(currency_out, currency_in, city):
+def get_all_exchange_rate(currency_in, currency_out, city):
     # get all available procedures depending on the amount
 
     rub_id = '535'
@@ -96,7 +96,7 @@ def get_all_exchange_rate(currency_out, currency_in, city):
 
     rate_arr = []
     for summ in amounts:
-        exchange_rate = get_exchange_rate_for_currency_pair(currency_out, currency_in, city, summ, action=1)
+        exchange_rate = get_exchange_rate_for_currency_pair(currency_in, currency_out, city, summ, action=1)
         if exchange_rate is None:
             return None
         rate_arr += [exchange_rate]
