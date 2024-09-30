@@ -59,4 +59,4 @@ jobs:
             docker pull knyaka/obmenca-rates-post-bot:latest
             docker stop obmenca-rates-post-bot
             docker remove obmenca-rates-post-bot
-            docker run -d --name obmenca-rates-post-bot --env TOKEN=${{ secrets.TOKEN }} knyaka/obmenca-rates-post-bot
+            docker run -d --name obmenca-rates-post-bot --env TOKEN=${{ secrets.TOKEN }} --env API_LOGIN=${{ secrets.API_LOGIN }} --env API_KEY=${{ secrets.API_KEY }} --env BASE_URL=${{ secrets.BASE_URL }} knyaka/obmenca-rates-post-bot
