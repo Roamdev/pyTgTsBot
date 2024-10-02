@@ -1,6 +1,10 @@
 import os
 import requests
+import math
 from dotenv import load_dotenv
+from template_text import amounts_list
+
+
 
 
 load_dotenv()
@@ -9,6 +13,12 @@ api_login = os.getenv('API_LOGIN')
 api_key = os.getenv('API_KEY')
 base_url = os.getenv('BASE_URL')
 query_headers = {'API-LOGIN': api_login, 'API-KEY': api_key}
+
+
+def rounding_up(numm):
+    rounded_res = math.ceil(numm * 100 / 5) * 5
+    rounded_res = rounded_res / 100
+    return rounded_res
 
 
 def get_direction(currency_in, currency_out):
@@ -85,10 +95,6 @@ def get_all_exchange_rate(currency_in, currency_out, city):
     # get all available procedures depending on the amount
 
     rub_id = '535'
-    amounts_list = {
-        'USD': [100, 500, 1500, 5000, 10000],
-        'RUB': [10000, 50000, 150000, 500000, 1000000]
-    }
 
     amounts = amounts_list.get('USD')
     if currency_out == rub_id:
@@ -99,5 +105,5 @@ def get_all_exchange_rate(currency_in, currency_out, city):
         exchange_rate = get_exchange_rate_for_currency_pair(currency_in, currency_out, city, summ, action=1)
         if exchange_rate is None:
             return None
-        rate_arr += [exchange_rate]
+        rate_arr += [str(rounding_up(float(exchange_rate)))]
     return rate_arr
