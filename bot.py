@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
-from template_text import header_message, rub_to_usd, usd_to_rub, footer_text
+from template_text import (amounts_list, header_text,
+                           usdt_text, footer_text, templates)
 from currencies import Currencies
 
 load_dotenv()
@@ -14,9 +15,20 @@ commands = [
     "rate_LOSANGELES",
     "rate_MIAMI",
     "rate_NEWYORK",
-    "rate_CHICAGO"
+    "rate_CHICAGO",
+    "rate_ORANGE_COUNTY"
 ]
 commands_text = '\n\n'.join([f'/{command}' for command in commands])
+
+
+def rendering_rates(amounts, currency_sing_in, rates, currency_sing_out):
+    # drawing a pair of currency + amount
+    value = ''
+    
+    for i in range(len(amounts)):
+        value += f'\n• {amounts[i]}{currency_sing_in} -> {rates[i]}{currency_sing_out}'
+    
+    return value
 
 
 @bot.message_handler(commands=['help', 'start'])
@@ -28,27 +40,57 @@ def send_welcome(message):
 def send_rate(message):
     bot.send_message(message.chat.id, 'Обработка запроса 🌚')
     city = message.text[6:]
-    rub_to_cash = exchange_rate(Currencies.CASHUSD.value, Currencies.WIRERUB.value, city)
-    rub_to_zelle = exchange_rate(Currencies.ZELLE.value, Currencies.WIRERUB.value, city)
-    cash_usd_to_rub = exchange_rate(Currencies.WIRERUB.value, Currencies.CASHUSD.value, city)
-    zelle_to_rub = exchange_rate(Currencies.WIRERUB.value, Currencies.ZELLE.value, city)
-    if rub_to_cash and rub_to_zelle and cash_usd_to_rub and zelle_to_rub:
-        bot.send_message(message.chat.id, f'{header_message}\n\n'
-                                          f'Курс для города {chosen_city_name(city)}:'
-                                          f'\n\n{rub_to_usd}:\n'
-                                          f'\n{rub_to_cash[0]} / {rub_to_zelle[0]} от 10000₽'
-                                          f'\n{rub_to_cash[1]} / {rub_to_zelle[1]} от 50000₽'
-                                          f'\n{rub_to_cash[2]} / {rub_to_zelle[2]} от 150.000₽'
-                                          f'\n{rub_to_cash[3]} / {rub_to_zelle[3]} от 500.000₽'
-                                          f'\n{rub_to_cash[4]} / {rub_to_zelle[4]} от 1 млн ₽'
-                                          f'\n\n{usd_to_rub}\n'
-                                          f'\n{cash_usd_to_rub[0]} / {zelle_to_rub[0]} от 100$'
-                                          f'\n{cash_usd_to_rub[1]} / {zelle_to_rub[1]} от 500$'
-                                          f'\n{cash_usd_to_rub[2]} / {zelle_to_rub[2]} от 1500$'
-                                          f'\n{cash_usd_to_rub[3]} / {zelle_to_rub[3]} от 5000$'
-                                          f'\n{cash_usd_to_rub[4]} / {zelle_to_rub[4]} от 10000$'
-                                          f'\n\n{footer_text}'
-                         )
+
+    # "if statement" is needed here because the API does not have this city, I had to improvise
+
+    if city == "ORANGE_COUNTY":
+        city_name = 'Orange County'
+        city = 'LOSANGELES'
+    else:
+        city_name = chosen_city_name(city)
+
+    rub_sign = '₽'
+    usd_sign = '$'
+    rub_amounts = amounts_list.get('RUB')
+    usd_amounts = amounts_list.get('USD')
+    rub_to_cash_rates = exchange_rate(Currencies.CASHUSD.value, Currencies.WIRERUB.value, city)
+    rub_to_zelle_rates = exchange_rate(Currencies.ZELLE.value, Currencies.WIRERUB.value, city)
+    cash_usd_to_rub_rates = exchange_rate(Currencies.WIRERUB.value, Currencies.CASHUSD.value, city)
+    zelle_to_rub_rates = exchange_rate(Currencies.WIRERUB.value, Currencies.ZELLE.value, city)
+
+    # "if statement" is needed here because the API does not have this city, I had to improvise
+
+    if city_name == "Orange County":
+        city = "ORANGE_COUNTY"
+
+    if rub_to_cash_rates and rub_to_zelle_rates and cash_usd_to_rub_rates and zelle_to_rub_rates:
+        bot.send_message(
+            message.chat.id,
+
+            f'<b>Обмен валют в {city_name}:</b>\n\n'
+            f'{templates.get(city)}'
+            f'{header_text}'
+            f'<blockquote><b>'
+            f'Курсы обмена ₽ на $(наличные):'
+            f'{rendering_rates(rub_amounts, rub_sign, rub_to_cash_rates, usd_sign)}'
+            f'</b></blockquote>\n'
+            f'<blockquote><b>'
+            f'Курсы обмена $(наличные) на ₽:'
+            f'{rendering_rates(usd_amounts, usd_sign, cash_usd_to_rub_rates, rub_sign)}'
+            f'</b></blockquote>\n'
+            f'{usdt_text}'
+            f'<blockquote expandable><b>'
+            f'Курсы обмена ₽ на $ (Zelle):'
+            f'{rendering_rates(rub_amounts, rub_sign, rub_to_zelle_rates, usd_sign)}'
+            f'</b></blockquote>\n'
+            f'<blockquote expandable><b>'
+            f'Курсы обмена $ (Zelle) на ₽:'
+            f'{rendering_rates(usd_amounts, usd_sign, zelle_to_rub_rates, rub_sign)}'
+            f'</b></blockquote>\n'
+            f'{footer_text}',
+
+            parse_mode='HTML'
+        )
     else:
         bot.send_message(message.chat.id, 'sorry is None')
 
