@@ -26,7 +26,7 @@ templates = {
     'MIAMI': '📍 <a href="https://t.me/obmenca_miami">Miami - Sunny Isles</a>',
     'NEWYORK': '📍 <a href="https://t.me/NY_obmenka">New York - Brooklyn</a>\n',
     'CHICAGO': '📍 <a href="https://t.me/Chicago_obmenca">Chicago - Des Plaines</a>\n',
-    'ORANGE_COUNTY': '📍 <a href="https://t.me/oc_obmenca">Orange County</a>'
+    'ORANGE_COUNTY': '📍 <a href="https://t.me/obmenca_oc">Orange County</a>'
 }
 
 date_month = month_translate.get(date.today().strftime('%b'))
