@@ -61,6 +61,12 @@ footer_text = (f'Тяни вниз и увидишь все курсы ☝️'
                f'\n<a href="https://t.me/obmen_la_ca/4">Как происходит обмен?</a>'
                f'\n<a href="https://t.me/obmen_la_ca/6">Как приготовиться к обмену?</a>'
                f'\n<a href="https://t.me/obmen_la_ca/7">Как поменять наличные между Россией и США?</a>'
-               f'\n<a href="https://t.me/creditshark">Улучшение кредитной истории</a>'
-               f'\n\n✈️ <a href="https://t.me/miami_obmenca">Написать оператору</a>'
-               f'\n\n!Вы можете оставить ваш отзыв в комментариях этого поста!')
+               f'\n<a href="https://t.me/creditshark">Улучшение кредитной истории</a>')
+
+footer_link = {
+    'LOSANGELES': '\n\n✈️ <a href="https://t.me/rfice220">Написать оператору</a>',
+    'MIAMI': '\n\n✈️ <a href="https://t.me/obmenca_miami">Написать оператору</a>',
+    'NEWYORK': '\n\n✈️ <a href="https://t.me/NY_obmenka">Написать оператору</a>',
+    'CHICAGO': '\n\n✈️ <a href="https://t.me/Chicago_obmenca">Написать оператору</a>',
+    'ORANGE_COUNTY': '\n\n✈️ <a href="https://t.me/obmenca_oc">Написать оператору</a>'
+}
