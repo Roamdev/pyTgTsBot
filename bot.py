@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
-                           usdt_text, footer_text, templates)
+                           usdt_text, footer_text, footer_link, templates)
 from currencies import Currencies
 
 load_dotenv()
@@ -87,7 +87,10 @@ def send_rate(message):
             f'Курсы обмена $ (Zelle) на ₽:'
             f'{rendering_rates(usd_amounts, usd_sign, zelle_to_rub_rates, rub_sign)}'
             f'</b></blockquote>\n'
-            f'{footer_text}',
+            f'{footer_text}'
+            f'{footer_link.get(city)}'
+            f'\n\n!Вы можете оставить ваш отзыв в комментариях этого поста!',
+            
 
             parse_mode='HTML'
         )
