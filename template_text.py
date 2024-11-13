@@ -1,5 +1,5 @@
 from datetime import date
-
+from enum import Enum
 
 month_translate = {
     'Jan': 'Января',
@@ -19,14 +19,23 @@ amounts_list = {
     'USD': [10000, 5000, 1500, 500, 100],
     'RUB': [1000000, 500000, 150000, 50000, 10000]
 }
-templates = {
-    'LOSANGELES': ('📍 <a href="https://t.me/rfice220">Офис в Los Angeles - Sherman Oaks</a>'
-                   '\n🔥 Free Parking для клиентов\n'
-                   '\n☎️ Позвонить: 888 702 4827\n'),
-    'MIAMI': '📍 <a href="https://t.me/obmenca_miami">Miami - Sunny Isles</a>',
-    'NEWYORK': '📍 <a href="https://t.me/NY_obmenka">New York - Brooklyn</a>\n',
-    'CHICAGO': '📍 <a href="https://t.me/Chicago_obmenca">Chicago - Des Plaines</a>\n',
-    'ORANGE_COUNTY': '📍 <a href="https://t.me/obmenca_oc">Orange County</a>'
+
+telegram_links = {
+    'LOSANGELES': 'https://t.me/rfice220',
+    'MIAMI': 'https://t.me/obmenca_miami',
+    'NEWYORK': 'https://t.me/NY_obmenka',
+    'CHICAGO': 'https://t.me/Chicago_obmenca',
+    'ORANGE_COUNTY': 'https://t.me/obmenca_oc'
+}
+
+template_text = {
+    
+    'LOSANGELES': (f'📍 <a href="{telegram_links.get('LOSANGELES')}">Офис в Los Angeles - Sherman Oaks</a>'
+                   f'\n🔥 Free Parking для клиентов\n\n☎️ Позвонить: 888 702 4827\n'),
+    'MIAMI': f'📍 <a href="{telegram_links.get('MIAMI')}">Miami - Sunny Isles</a>',
+    'NEWYORK': f'📍 <a href="{telegram_links.get('NEWYORK')}">New York - Brooklyn</a>\n',
+    'CHICAGO': f'📍 <a href="{telegram_links.get('CHICAGO')}">Chicago - Des Plaines</a>\n',
+    'ORANGE_COUNTY': f'📍 <a href="{telegram_links.get('ORANGE_COUNTY')}">Orange County</a>'
 }
 
 date_month = month_translate.get(date.today().strftime('%b'))
@@ -35,16 +44,31 @@ date_day = date.today().strftime('%d')
 links_text = ''
 
 header_text = (
-    f'\n✈️ Написать по обмену <a href="https://t.me/NY_obmenka">Zelle online</a>\n'
-    f'\nОставить заявку на <a href="https://obmenca.com/">сайте</a> '
-    f'или в нашем <a href="https://t.me/Obmen_cabot">боте</a>\n'
-    f'\n<b>Курсы на {date_day} {date_month.capitalize()}</b>\n'
-    )
+    
+    f'\n\nОставить заявку на <a href="https://obmenca.com/">сайте</a> '
+    f'или в нашем <a href="https://t.me/Obmen_cabot">боте</a>'
+    f'\n\n<b>Курсы на {date_day} {date_month.capitalize()}</b>\n'
+)
 
-usdt_text = (f'<blockquote><b>Обмен USDT на $ (наличные):\n• $10,000 -> 1.0%\n• $5,000 -> 2.0%\n'
-             f'• $1,500 -> 2.5%\n• $500 -> 3.5%\n• $100 -> 6.0%\n• Zelle +1%</b></blockquote>'
-             f'\n<blockquote><b>Обмен $ (наличные) на USDT:\n• $10,000 -> 2.5%\n• $5,000 -> 2.0%'
-             f'\n• $1,500 -> 3.0%\n• $500 -> 3.5%\n• $100 -> 6.0%\n• Zelle +1%</b></blockquote>')
+usdt_text = (f'<blockquote><b>Обмен USDT на $ (наличные):'
+             f'\n• $10,000 -> 1.0%\n• $5,000 -> 2.0%'
+             f'\n• $1,500 -> 2.5%\n• $500 -> 3.5%'
+             f'\n• $100 -> 6.0%\n• Zelle +1%</b></blockquote>'
+             f'\n<blockquote><b>Обмен $ (наличные) на USDT:'
+             f'\n• $10,000 -> 2.5%\n• $5,000 -> 2.0%'
+             f'\n• $1,500 -> 3.0%\n• $500 -> 3.5%'
+             f'\n• $100 -> 6.0%\n• Zelle +1%</b></blockquote>'
+             )
+
+usdt_text_NY = (f'<blockquote><b>Обмен USDT на $ (наличные):'
+                f'\n• $10,000 -> 1.0%\n• $5,000 -> 2.0%'
+                f'\n• $1,500 -> 2.5%\n• $500 -> 3.5%'
+                f'\n• $100 -> 6.0%\n• Zelle +1%</b></blockquote>'
+                f'\n<blockquote><b>Обмен $ (наличные) на USDT:'
+                f'\n• $10,000 -> 5%\n• $5,000 -> 5.5%'
+                f'\n• $1,500 -> 6%\n• $500 -> 7.5%'
+                f'\n• $100 -> 12.5%\n• Zelle +1%</b></blockquote>'
+                )
 
 footer_text = (f'Тяни вниз и увидишь все курсы ☝️'
                f'\n\n💸 Переводы наличных'
@@ -62,11 +86,3 @@ footer_text = (f'Тяни вниз и увидишь все курсы ☝️'
                f'\n<a href="https://t.me/obmen_la_ca/6">Как приготовиться к обмену?</a>'
                f'\n<a href="https://t.me/obmen_la_ca/7">Как поменять наличные между Россией и США?</a>'
                f'\n<a href="https://t.me/creditshark">Улучшение кредитной истории</a>')
-
-footer_link = {
-    'LOSANGELES': '\n\n✈️ <a href="https://t.me/rfice220">Написать оператору</a>',
-    'MIAMI': '\n\n✈️ <a href="https://t.me/obmenca_miami">Написать оператору</a>',
-    'NEWYORK': '\n\n✈️ <a href="https://t.me/NY_obmenka">Написать оператору</a>',
-    'CHICAGO': '\n\n✈️ <a href="https://t.me/Chicago_obmenca">Написать оператору</a>',
-    'ORANGE_COUNTY': '\n\n✈️ <a href="https://t.me/obmenca_oc">Написать оператору</a>'
-}

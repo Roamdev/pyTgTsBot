@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
-                           usdt_text, footer_text, footer_link, templates)
+                           usdt_text, usdt_text_NY, footer_text, template_text,
+                           telegram_links)
 from currencies import Currencies
 
 load_dotenv()
@@ -63,12 +64,20 @@ def send_rate(message):
     if city_name == "Orange County":
         city = "ORANGE_COUNTY"
 
+    if city == 'NEWYORK':
+        usdt_text_for_city = usdt_text_NY
+    else:
+        usdt_text_for_city = usdt_text
+    print(city_name)
+    print(usdt_text_for_city)
+
     if rub_to_cash_rates and rub_to_zelle_rates and cash_usd_to_rub_rates and zelle_to_rub_rates:
         bot.send_message(
             message.chat.id,
 
             f'<b>Обмен валют в {city_name}:</b>\n\n'
-            f'{templates.get(city)}'
+            f'{template_text.get(city)}'
+            f'\n✈️ Написать по обмену <a href="{telegram_links.get(city)}">Zelle online</a>'
             f'{header_text}'
             f'<blockquote><b>'
             f'Курсы обмена ₽ на $(наличные):'
@@ -78,7 +87,7 @@ def send_rate(message):
             f'Курсы обмена $(наличные) на ₽:'
             f'{rendering_rates(usd_amounts, usd_sign, cash_usd_to_rub_rates, rub_sign)}'
             f'</b></blockquote>\n'
-            f'{usdt_text}'
+            f'{usdt_text_for_city}'
             f'<blockquote expandable><b>'
             f'Курсы обмена ₽ на $ (Zelle):'
             f'{rendering_rates(rub_amounts, rub_sign, rub_to_zelle_rates, usd_sign)}'
@@ -88,9 +97,8 @@ def send_rate(message):
             f'{rendering_rates(usd_amounts, usd_sign, zelle_to_rub_rates, rub_sign)}'
             f'</b></blockquote>\n'
             f'{footer_text}'
-            f'{footer_link.get(city)}'
+            f'\n\n✈️ <a href="{telegram_links.get(city)}">Написать оператору</a>'
             f'\n\n!Вы можете оставить ваш отзыв в комментариях этого поста!',
-            
 
             parse_mode='HTML'
         )
