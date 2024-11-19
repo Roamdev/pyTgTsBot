@@ -1,12 +1,14 @@
 import os
 import telebot
 from dotenv import load_dotenv
+from datetime import date
+
 
 from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
                            usdt_text, usdt_text_NY, footer_text, template_text,
-                           telegram_links)
+                           telegram_links, month_translate)
 from currencies import Currencies
 
 load_dotenv()
@@ -42,6 +44,9 @@ def send_rate(message):
     bot.send_message(message.chat.id, 'Обработка запроса 🌚')
     city = message.text[6:]
 
+    date_month = month_translate.get(date.today().strftime('%b'))
+    date_day = date.today().strftime('%d')
+
     # "if statement" is needed here because the API does not have this city, I had to improvise
 
     if city == "ORANGE_COUNTY":
@@ -68,8 +73,6 @@ def send_rate(message):
         usdt_text_for_city = usdt_text_NY
     else:
         usdt_text_for_city = usdt_text
-    print(city_name)
-    print(usdt_text_for_city)
 
     if rub_to_cash_rates and rub_to_zelle_rates and cash_usd_to_rub_rates and zelle_to_rub_rates:
         bot.send_message(
@@ -79,6 +82,7 @@ def send_rate(message):
             f'{template_text.get(city)}'
             f'\n✈️ Написать по обмену <a href="{telegram_links.get(city)}">Zelle online</a>'
             f'{header_text}'
+            f'\n\n<b>Курсы на {date_day} {date_month.capitalize()}</b>\n'
             f'<blockquote><b>'
             f'Курсы обмена ₽ на $(наличные):'
             f'{rendering_rates(rub_amounts, rub_sign, rub_to_cash_rates, usd_sign)}'
