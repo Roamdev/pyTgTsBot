@@ -1,6 +1,3 @@
-from datetime import date
-from enum import Enum
-
 month_translate = {
     'Jan': 'Января',
     'Feb': 'Февраля',
@@ -29,7 +26,6 @@ telegram_links = {
 }
 
 template_text = {
-    
     'LOSANGELES': (f'📍 <a href="{telegram_links.get('LOSANGELES')}">Офис в Los Angeles - Sherman Oaks</a>'
                    f'\n🔥 Free Parking для клиентов\n\n☎️ Позвонить: 888 702 4827\n'),
     'MIAMI': f'📍 <a href="{telegram_links.get('MIAMI')}">Miami - Sunny Isles</a>',
@@ -38,16 +34,10 @@ template_text = {
     'ORANGE_COUNTY': f'📍 <a href="{telegram_links.get('ORANGE_COUNTY')}">Orange County</a>'
 }
 
-date_month = month_translate.get(date.today().strftime('%b'))
-date_day = date.today().strftime('%d')
-
-links_text = ''
 
 header_text = (
-    
     f'\n\nОставить заявку на <a href="https://obmenca.com/">сайте</a> '
     f'или в нашем <a href="https://t.me/Obmen_cabot">боте</a>'
-    f'\n\n<b>Курсы на {date_day} {date_month.capitalize()}</b>\n'
 )
 
 usdt_text = (f'<blockquote><b>Обмен USDT на $ (наличные):'
