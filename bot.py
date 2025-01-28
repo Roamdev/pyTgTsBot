@@ -7,7 +7,7 @@ from datetime import date
 from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
-                           usdt_text, usdt_text_NY, footer_text, template_text,
+                           usdt_text, usdt_text_NY, usdt_text_Chicago, footer_text, template_text,
                            telegram_links, month_translate)
 from currencies import Currencies
 
@@ -15,10 +15,10 @@ load_dotenv()
 token = os.getenv('TOKEN')
 bot = telebot.TeleBot(token)
 commands = [
-    "rate_LOSANGELES",
+    "rate_LOSAN",
     "rate_MIAMI",
     "rate_NEWYORK",
-    "rate_CHICAGO",
+    "rate_CHCG",
     "rate_ORANGE_COUNTY"
 ]
 commands_text = '\n\n'.join([f'/{command}' for command in commands])
@@ -51,7 +51,7 @@ def send_rate(message):
 
     if city == "ORANGE_COUNTY":
         city_name = 'Orange County'
-        city = 'LOSANGELES'
+        city = 'LOSAN'
     else:
         city_name = chosen_city_name(city)
 
@@ -71,6 +71,8 @@ def send_rate(message):
 
     if city == 'NEWYORK':
         usdt_text_for_city = usdt_text_NY
+    elif city == 'CHCG':
+        usdt_text_for_city = usdt_text_Chicago
     else:
         usdt_text_for_city = usdt_text
 
