@@ -20,9 +20,9 @@ amounts_list = {
 telegram_links = {
     'LOSAN': 'https://t.me/rfice220',
     'MIAMI': 'https://t.me/obmenca_miami',
-    'NEWYORK': 'https://t.me/NY_obmenka',
+    'NEWYORK': 'https://t.me/obmenka_newyork',
     'CHCG': 'https://t.me/Chicago_obmenca',
-    'ORANGE_COUNTY': 'https://t.me/obmenca_oc',
+    'ORANGE_COUNTY': 'https://t.me/oc_obmenca',
     'obmenca_la_ca': 'https://t.me/obmen_la_ca/'
 }
 
@@ -81,11 +81,11 @@ footer_text = (f'Тяни вниз и увидишь все курсы ☝️'
                f'\n<a href="https://searchengines.guru/ru/forum/899662">Отзывы за 10 лет работы в России</a>'
                f'\n\n➕ Личная встреча в офисе со счетной машинкой'
                f'\n🏦 Наши офисы:'
-               f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Los Angeles - Sherman Oaks</a>'
-               f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">New York - Brooklyn</a>'
-               f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Miami - Sunny Isles</a>'
-               f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Orange - County</a>'
-               f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Chicago - Des Plaines</a>'
+               f'\n<a href="{telegram_links.get('obmenca_la_ca')}">Los Angeles - Sherman Oaks</a>'
+               f'\n<a href="{telegram_links.get('NEWYORK')}416">New York - Brooklyn</a>'
+               f'\n<a href="{telegram_links.get('MIAMI')}416">Miami - Sunny Isles</a>'
+               f'\n<a href="{telegram_links.get('ORANGE_COUNTY')}416">Orange - County</a>'
+               f'\n<a href="{telegram_links.get('CHCG')}416">Chicago - Des Plaines</a>'
 
                f'\n\n⚡️ Полезная информация:'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Система скидок!</a>'
