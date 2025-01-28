@@ -4,9 +4,6 @@ import math
 from dotenv import load_dotenv
 from template_text import amounts_list
 
-
-
-
 load_dotenv()
 
 api_login = os.getenv('API_LOGIN')
@@ -23,7 +20,7 @@ def rounding_up(numm):
 
 def get_direction(currency_in, currency_out):
     # send api request get_directions with params
-
+    
     method_name = 'get_directions'
     endpoint = base_url + method_name
     response = requests.post(endpoint, headers=query_headers)
@@ -37,7 +34,7 @@ def get_direction(currency_in, currency_out):
 
 def get_calc(direction_id, amount, city, action=1):
     # send api request get_calc with params
-
+    
     method_name = 'get_calc'
     endpoint = base_url + method_name
     data = {
@@ -45,7 +42,7 @@ def get_calc(direction_id, amount, city, action=1):
         'calc_amount': amount,
         'calc_action': action,
         'cd': f'city={city}'
-        }
+    }
     response = requests.post(
         endpoint,
         data=data,
@@ -54,13 +51,13 @@ def get_calc(direction_id, amount, city, action=1):
     request_data = response.json().get('data', {})
     course_give = request_data.get('course_give')
     course_get = request_data.get('course_get')
-
+    
     if course_give > course_get:
         key = 'course_give'
     else:
         key = 'course_get'
     exchange_rate = request_data.get(key)
-
+    
     return exchange_rate
 
 
@@ -74,7 +71,7 @@ def get_chosen_city_name(city):
     city = (
         response.json().get("data", {}).get("dir_fields", {}).get("city", {}).get("options", {}).get(city, "Не выбран")
     )
-
+    
     return city
 
 
@@ -87,7 +84,7 @@ def get_exchange_rate_for_currency_pair(currency_in, currency_out, city, amount,
         return None
 
     exchange_rate = get_calc(direction_id, amount, city, action)
-
+    
     return exchange_rate
 
 
