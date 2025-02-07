@@ -28,7 +28,7 @@ telegram_links = {
 
 template_text = {
     'LOSAN': (f'📍 <a href="{telegram_links.get('LOSAN')}">Офис в Los Angeles - Sherman Oaks</a>'
-                   f'\n🔥 Free Parking для клиентов\n\n☎️ Позвонить: 888 702 4827\n'),
+              f'\n🔥 Free Parking для клиентов\n\n☎️ Позвонить: 888 702 4827\n'),
     'MIAMI': f'📍 <a href="{telegram_links.get('MIAMI')}">Miami - Sunny Isles</a>',
     'NEWYORK': f'📍 <a href="{telegram_links.get('NEWYORK')}">New York - Brooklyn</a>\n',
     'CHCG': f'📍 <a href="{telegram_links.get('CHCG')}">Chicago - Des Plaines</a>\n',
@@ -91,4 +91,25 @@ footer_text = (f'Тяни вниз и увидишь все курсы ☝️'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}4">Как происходит обмен?</a>'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}6">Как приготовиться к обмену?</a>'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}7">Как поменять наличные между Россией и США?</a>'
-               f'\n<a href="https://t.me/creditshark">Улучшение кредитной истории</a>')
+               f'\n<a href="https://t.me/creditshark">Улучшение кредитной истории</a>'
+               )
+footer_text_miami = (
+    f'\n💸 Переводы наличных'
+    f'\n• Майами -> Москва (от $5000) | 4%'
+    f'\n• Москва -> Майами (от $5000) | 4%'
+    f'\n\nТакже обменяем и другие валюты - курс договорной.'
+    f'\n\n✅ Наши гарантии:'
+    f'\n<a href="https://t.me/obmen_la_ca/17">Отзывы в США</a>'
+    f'\n<a href="https://searchengines.guru/ru/forum/899662">Отзывы за 10 лет работы в России</a>'
+    f'\n\n⚡️ Полезная информация:'
+    f'\n<a href="https://t.me/obmenca_miami/16">Как происходит обмен?</a>'
+    f'\n<a href="https://t.me/obmenca_miami/26">Как приготовиться к обмену?</a>'
+    f'\n<a href="https://t.me/obmenca_miami/24">Как поменять наличные между Россией и США?</a>'
+    f'\n\n  🏦Наши офисы:'
+    f'\n<a href="https://t.me/obmenca_miami">Miami - Sunny Isles</a>'
+    f'\n<a href="https://t.me/obmen_la_ca">Los Angeles - Sherman Oaks</a>'
+    f'\n<a href="https://t.me/obmenka_newyork">New York - Brooklyn</a>'
+    f'\n<a href="https://t.me/oc_obmenca">Orange - County</a>'
+    f'\n<a href="https://t.me/Chicago_obmenca">Chicago - Des Plaines</a>'
+    f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>'
+)
