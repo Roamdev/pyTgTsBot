@@ -7,7 +7,7 @@ from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
                            usdt_text, usdt_text_NY, usdt_text_Chicago, footer_text, footer_text_miami, template_text,
-                           telegram_links, month_translate)
+                           telegram_links, month_translate, commission_in_city)
 from currencies import Currencies
 
 load_dotenv()
@@ -88,7 +88,8 @@ def send_rate(message):
     if city == 'MIAMI':
         finish_text = footer_text_miami
     else:
-        finish_text = footer_text + end_text
+        finish_text = (f'Тяни вниз и увидишь все курсы ☝️\n\n💸 Переводы наличных' + commission_in_city.get(city) +
+                       footer_text + end_text)
 
     if rub_to_cash_rates and rub_to_zelle_rates and cash_usd_to_rub_rates and zelle_to_rub_rates:
         bot.send_message(
