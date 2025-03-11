@@ -7,7 +7,7 @@ from exchange_api import get_all_exchange_rate as exchange_rate
 from exchange_api import get_chosen_city_name as chosen_city_name
 from template_text import (amounts_list, header_text,
                            usdt_text, usdt_text_NY, usdt_text_Chicago, footer_text, footer_text_miami, template_text,
-                           telegram_links, month_translate, commission_in_city)
+                           telegram_links, month_translate, commission_in_city, operator_city)
 from currencies import Currencies
 
 load_dotenv()
@@ -26,10 +26,10 @@ commands_text = '\n\n'.join([f'/{command}' for command in commands])
 def rendering_rates(amounts, currency_sing_in, rates, currency_sing_out):
     # drawing a pair of currency + amount
     value = ''
-    
+
     for i in range(len(amounts)):
         value += f'\n• {amounts[i]}{currency_sing_in} -> {rates[i]}{currency_sing_out}'
-    
+
     return value
 
 
@@ -117,7 +117,8 @@ def send_rate(message):
             f'Курсы обмена $ (Zelle) на ₽:'
             f'{rendering_rates(usd_amounts, usd_sign, zelle_to_rub_rates, rub_sign)}'
             f'</b></blockquote>\n'
-            f'{finish_text}',
+            f'{finish_text}'
+            f'{operator_city.get(city)}',
             parse_mode='HTML'
         )
     else:

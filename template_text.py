@@ -73,7 +73,7 @@ usdt_text_Chicago = (f'<blockquote><b>Обмен USDT на $ (наличные):
 commission_in_city = {
     'LOSAN': f'\n• LA -> Москва (от $5000) | 3%\n• Москва -> LA (от $5000) | 3%',
     'NEWYORK': f'\n• LA -> Москва (от $5000) | 3%\n• Москва -> LA (от $5000) | 3%',
-    'CHCG': f'\n• Chicago -> Москва (от $5000) | 4%\n• Chicago -> LA (от $5000) | 1,5%',
+    'CHCG': f'\n• Chicago -> Москва (от $5000) | 4%\n• Москва -> Chicago (от $5000) | 1,5%',
     'ORANGE_COUNTY': f'\n• LA -> Москва (от $5000) | 3%\n• Москва -> LA (от $5000) | 3%'
 }
 
@@ -115,5 +115,11 @@ footer_text_miami = (
     f'\n<a href="https://t.me/obmenka_newyork">New York - Brooklyn</a>'
     f'\n<a href="https://t.me/oc_obmenca">Orange - County</a>'
     f'\n<a href="https://t.me/Chicago_obmenca">Chicago - Des Plaines</a>'
-    f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>'
 )
+operator_city = {
+    'LOSAN': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
+    'MIAMI': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
+    'NEWYORK': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
+    'CHCG': f'\n\n✈️ написать оператору\n@CHI_obmenca',
+    'ORANGE_COUNTY': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>'
+}
