@@ -21,7 +21,7 @@ telegram_links = {
     'LOSAN': 'https://t.me/rfice220',
     'MIAMI': 'https://t.me/obmenca_miami',
     'NEWYORK': 'https://t.me/obmenka_newyork',
-    'CHCG': 'https://t.me/Chicago_obmenca',
+    'CHCG': 'https://t.me/CHI_obmenca',
     'ORANGE_COUNTY': 'https://t.me/oc_obmenca',
     'obmenca_la_ca': 'https://t.me/obmen_la_ca/'
 }
@@ -31,7 +31,7 @@ template_text = {
               f'\n🔥 Free Parking для клиентов\n\n☎️ Позвонить: 888 702 4827\n'),
     'MIAMI': f'📍 <a href="{telegram_links.get('MIAMI')}">Miami - Sunny Isles</a>',
     'NEWYORK': f'📍 <a href="{telegram_links.get('NEWYORK')}">New York - Brooklyn</a>\n',
-    'CHCG': f'📍 <a href="{telegram_links.get('CHCG')}">Chicago - Des Plaines</a>\n',
+    'CHCG': f'📍 <a href="{telegram_links.get('CHCG')}">Chicago - Lincolnshire</a>\n',
     'ORANGE_COUNTY': f'📍 <a href="{telegram_links.get('ORANGE_COUNTY')}">Orange County</a>'
 }
 
@@ -89,7 +89,7 @@ footer_text = (f'\n\n<a href="{telegram_links.get('LOSAN')}">Также обме
                f'\n<a href="{telegram_links.get('NEWYORK')}">New York - Brooklyn</a>'
                f'\n<a href="{telegram_links.get('MIAMI')}">Miami - Sunny Isles</a>'
                f'\n<a href="{telegram_links.get('ORANGE_COUNTY')}">Orange - County</a>'
-               f'\n<a href="{telegram_links.get('CHCG')}">Chicago - Des Plaines</a>'
+               f'\n<a href="{telegram_links.get('CHCG')}">Chicago - Lincolnshire</a>'
                f'\n\n⚡️ Полезная информация:'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}416">Система скидок!</a>'
                f'\n<a href="{telegram_links.get('obmenca_la_ca')}4">Как происходит обмен?</a>'
@@ -114,7 +114,7 @@ footer_text_miami = (
     f'\n<a href="https://t.me/obmen_la_ca">Los Angeles - Sherman Oaks</a>'
     f'\n<a href="https://t.me/obmenka_newyork">New York - Brooklyn</a>'
     f'\n<a href="https://t.me/oc_obmenca">Orange - County</a>'
-    f'\n<a href="https://t.me/Chicago_obmenca">Chicago - Des Plaines</a>'
+    f'\n<a href="https://t.me/CHI_obmenca">Chicago - Lincolnshire</a>'
 )
 operator_city = {
     'LOSAN': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',

@@ -62,8 +62,7 @@ def send_rate(message):
     else:
         city_name = chosen_city_name(city)
 
-    end_text = (f'\n\n✈️ <a href="{telegram_links.get(city)}">Написать оператору</a>'
-                f'\n\n!Вы можете оставить ваш отзыв в комментариях этого поста!')
+    end_text = f'\n\n!Вы можете оставить ваш отзыв в комментариях этого поста!'
     rub_sign = '₽'
     usd_sign = '$'
     rub_amounts = amounts_list.get('RUB')
