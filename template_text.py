@@ -117,9 +117,9 @@ footer_text_miami = (
     f'\n<a href="https://t.me/CHI_obmenca">Chicago - Lincolnshire</a>'
 )
 operator_city = {
-    'LOSAN': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
-    'MIAMI': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
-    'NEWYORK': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>',
+    'LOSAN': f'\n\n<b><a href="{telegram_links.get('LOSAN')}">✈️ Написать оператору</a></b>',
+    'MIAMI': f'\n\n<b><a href="{telegram_links.get('MIAMI')}">✈️ Написать оператору</a></b>',
+    'NEWYORK': f'\n\n<b><a href="{telegram_links.get('NEWYORK')}">✈️ Написать оператору</a></b>',
     'CHCG': f'\n\n✈️ написать оператору\n@CHI_obmenca',
-    'ORANGE_COUNTY': f'\n\n<b><a href="https://t.me/miami_obmenca">✈️ Написать оператору</a></b>'
+    'ORANGE_COUNTY': f'\n\n<b><a href="{telegram_links.get('ORANGE_COUNTY')}">✈️ Написать оператору</a></b>'
 }
