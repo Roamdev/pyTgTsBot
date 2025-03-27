@@ -121,5 +121,5 @@ operator_city = {
     'MIAMI': f'\n\n<b><a href="{telegram_links.get('MIAMI')}">✈️ Написать оператору</a></b>',
     'NEWYORK': f'\n\n<b><a href="{telegram_links.get('NEWYORK')}">✈️ Написать оператору</a></b>',
     'CHCG': f'\n\n✈️ написать оператору\n@CHI_obmenca',
-    'ORANGE_COUNTY': f'\n\n<b><a href="{telegram_links.get('ORANGE_COUNTY')}">✈️ Написать оператору</a></b>'
+    'ORANGE_COUNTY': f'\n\n✈️ написать оператору\n@obmenca_oc'
 }
